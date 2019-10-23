@@ -40,7 +40,10 @@ public class NBody {
         double r = readRadius(filename);
         Planet[] planets = readPlanets(filename);
         
-        drawBackground(r);
+        String backgroundImg = "images/starfield.jpg"; 
+        StdDraw.setScale(-r, r);
+        StdDraw.clear();
+        StdDraw.picture(0, 0, backgroundImg);
 
         for (Planet planet : planets) {
             planet.draw();
@@ -64,7 +67,7 @@ public class NBody {
                 planets[i].update(dt, xForces[i], yForces[i]);
             }
 
-            drawBackground(r);
+            StdDraw.picture(0, 0, backgroundImg);
 
             for (Planet planet : planets) {
                 planet.draw();
@@ -86,11 +89,4 @@ public class NBody {
         }
     }
 
-    public static void drawBackground(double radius) {
-        double r = radius;
-        String backgroundImg = "images/starfield.jpg"; 
-        StdDraw.setScale(-r, r);
-        StdDraw.clear();
-        StdDraw.picture(0, 0, backgroundImg);
-    }
 }
