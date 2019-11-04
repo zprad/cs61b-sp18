@@ -3,27 +3,27 @@ public class ArrayDeque<Horse> {
     private Horse[] items;
 //    private int size;
     private int firstIndex;
-    private int lastIndex;
+    private int size;
     private final int FACTOR = 2;
     private final double ratio = 0.25;
 
-
+//  empty deque constructor.
     public ArrayDeque() {
-//        size = 0;
 
         items = (Horse []) new Object[8];
-        // firstIndex和lastIndex等于items.length时，表明Deque为空
-        firstIndex = items.length;
-        lastIndex = items.length;
+
+        firstIndex = 0;
+        size = 0;
     }
 
+    // ArrayDeque constructor with x.
     public ArrayDeque(Horse x) {
 //        size = 1;
 
         items = (Horse []) new Object[8];
         items[0] = x;
         firstIndex = 0;
-        lastIndex = 0;
+        size = 1;
     }
 
     private void resizing(int maxLength) {
@@ -48,38 +48,37 @@ public class ArrayDeque<Horse> {
         return n;
     }
 
+    // Adds an item of type Horse to the front of the deque.
     public void addFirst(Horse x) {
-        if (size() == items.length) {
-            resizing(size() * FACTOR);
+        if (size == items.length) {
+            resizing(size * FACTOR);
         }
         firstIndex = minus(firstIndex, 1);
         items[firstIndex] = x;
+        size += 1;
     }
 
     public void addLast(Horse x) {
         if (size() == items.length) {
             resizing(size() * FACTOR);
         }
-        lastIndex = plus(lastIndex, 1);
-        items[lastIndex] = x;
+        int index = plus(firstIndex, size);
+        items[index] = x;
     }
 
     public int size() {
-        // firstIndex和lastIndex等于items.length时，表明
-        if (firstIndex == items.length) {
-            return 0;
-        }
-        return lastIndex - firstIndex + 1;
+        return size;
     }
 
     public boolean isEmpty() {
-        return size() == 0;
+        return size == 0;
     }
 
     public void printDeque() {
-        int i = firstIndex;
-        while (i < lastIndex) {
-            System.out.print(items[i] + " ");
+        int i = 0;
+        while (i < size) {
+            int realI = plus(firstIndex, i);
+            System.out.print(items[realI] + " ");
             i = i + 1;
         }
         System.out.println();
@@ -89,7 +88,8 @@ public class ArrayDeque<Horse> {
         if (isEmpty()) {
             return null;
         }
-        return items[lastIndex - 1];
+        int lastIndex = plus(firstIndex, size - 1);
+        return items[lastIndex];
     }
 
     public void checkUseRatio() {
@@ -100,6 +100,22 @@ public class ArrayDeque<Horse> {
         }
     }
 
+    public Horse removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
+        if (items.length >= 16) {
+            checkUseRatio();
+        }
+        Horse n = items[firstIndex];
+
+        items[firstIndex] = null;
+        firstIndex = plus(firstIndex, 1);
+        size -= 1;
+
+        return n;
+    }
+
     public Horse removeLast() {
         if (isEmpty()) {
             return null;
@@ -107,16 +123,19 @@ public class ArrayDeque<Horse> {
         if (items.length >= 16) {
             checkUseRatio();
         }
+
+        int lastIndex = plus(firstIndex, size - 1);
         Horse n = items[lastIndex];
         items[lastIndex] = null;
-        lastIndex = lastIndex - 1;
+        size -= 1;
         return n;
     }
 
     public Horse get(int i) {
-        if (i >= size()) {
+        if (i >= size) {
             return null;
         }
-        return items[i + firstIndex];
+        int realIndex = plus(firstIndex, i);
+        return items[i + realIndex];
     }
 }
