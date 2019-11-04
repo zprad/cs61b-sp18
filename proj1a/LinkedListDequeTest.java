@@ -19,6 +19,14 @@ public class LinkedListDequeTest {
 		return true;
 	}
 
+	public static boolean checkInsert(int expected, int actual) {
+		if (expected != actual) {
+			System.out.println("insert() returned " + actual + ", but expected: " + expected);
+			return false;
+		}
+		return true;
+	}
+
 	/* Prints a nice message based on whether a test passed. 
 	 * The \n means newline. */
 	public static void printTestStatus(boolean passed) {
@@ -84,9 +92,34 @@ public class LinkedListDequeTest {
 		*/
 	}
 
+	public static void insertTest() {
+		System.out.println("Running insert test.");
+
+		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+		lld1.addLast(5);
+		lld1.addLast(6);
+		lld1.addLast(2);
+		lld1.insert(10, 1);
+		checkInsert(10, lld1.get(1));
+	}
+
+	public static void reverseTest() {
+		System.out.println("Running reverse test.");
+
+		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+		lld1.addLast(5);
+		lld1.addLast(6);
+		lld1.addLast(2);
+		lld1.insert(10, 1);
+		lld1.reverseRecursive();
+		checkInsert(6, lld1.get(1));
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
+		insertTest();
+		reverseTest();
 	}
 } 

@@ -30,6 +30,23 @@ public class LinkedListDeque<Horse> {
         sentNode.next = node;
     }
 
+    public void insert(Horse x, int position) {
+        size += 1;
+        int i = 0;
+        if (position > size) {
+            position = size;
+        }
+        IntNode p = sentNode;
+        while (i != position) {
+            i += 1;
+            p = p.next;
+        }
+        IntNode node = new IntNode(x, p, p.next);
+        p.next.prev = node;
+        p.next = node;
+
+    }
+
     public void addFirst(Horse x) {
         IntNode node = new IntNode(x, sentNode, sentNode.next);
         sentNode.next = node;
@@ -55,10 +72,11 @@ public class LinkedListDeque<Horse> {
     public void printDeque() {
         IntNode p = sentNode.next;
         while (p.item != null) {
-            System.out.print(p.item);
-            System.out.print(" ");
+            System.out.print(p.item + " ");
+//            System.out.print(" ");
             p = p.next;
         }
+        System.out.println();
     }
 
     public Horse removeFirst() {
@@ -107,7 +125,38 @@ public class LinkedListDeque<Horse> {
         if (index >= size) {
             return null;
         }
-        getRecursiveHelper(index, sentNode.next);
+        return getRecursiveHelper(index, sentNode.next);
+    }
+
+    public void reverse() {
+        IntNode p = sentNode;
+        IntNode moveNode = sentNode.prev;
+        while (moveNode.item != null) {
+            sentNode.prev = moveNode.prev;
+//            sentNode.prev.next = sentNode;
+            p.next = moveNode;
+            moveNode.prev = p;
+
+            moveNode = sentNode.prev;
+            p = p.next;
+        }
+        p.next = sentNode;
+    }
+
+    public void reverseHelper(IntNode current, IntNode move) {
+        if (move.item == null) {
+            current.next = sentNode;
+            return;
+        }
+        sentNode.prev = move.prev;
+        current.next = move;
+        move.prev = current;
+
+        reverseHelper(current.next, sentNode.prev);
+    }
+
+    public void reverseRecursive() {
+        reverseHelper(sentNode, sentNode.prev);
     }
 
 
