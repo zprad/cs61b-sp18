@@ -28,8 +28,21 @@ public class ArrayDeque<Horse> {
 
     private void resizing(int maxLength) {
         Horse[] newItems = (Horse []) new Object[maxLength];
-        System.arraycopy(items, 0, newItems, 0, size());
+        int firstPartLength = items.length - firstIndex;
+        int restPartLength = firstIndex;
+        System.arraycopy(items, firstIndex, newItems, 0, firstPartLength);
+        System.arraycopy(items, 0, newItems, firstPartLength, restPartLength);
         items = newItems;
+    }
+
+    public Horse[] resizing(int maxLength, Horse[] items, int firstIndex) {
+        Horse[] newItems = (Horse []) new Object[maxLength];
+        int firstPartLength = items.length - firstIndex;
+        int restPartLength = firstIndex;
+        System.arraycopy(items, firstIndex, newItems, 0, firstPartLength);
+        System.arraycopy(items, 0, newItems, firstPartLength, restPartLength);
+
+        return newItems;
     }
 
     private int plus(int index, int count) {
