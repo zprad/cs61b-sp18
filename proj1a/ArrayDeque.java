@@ -28,11 +28,17 @@ public class ArrayDeque<T> {
 
     private void resizing(int maxLength) {
         T[] newItems = (T []) new Object[maxLength];
-        int firstPartLength = items.length - firstIndex;
-        int restPartLength = firstIndex;
-        System.arraycopy(items, firstIndex, newItems, 0, firstPartLength);
-        System.arraycopy(items, 0, newItems, firstPartLength, restPartLength);
+        if (firstIndex + size > items.length) {
+            int firstPartLength = items.length - firstIndex;
+            int restPartLength = size - firstPartLength;
+            System.arraycopy(items, firstIndex, newItems, 0, firstPartLength);
+            System.arraycopy(items, 0, newItems, firstPartLength, restPartLength);
+        } else {
+            System.arraycopy(items, firstIndex, newItems, 0, size);
+        }
+
         items = newItems;
+        firstIndex = 0;
     }
 
 //    public T[] resizing(int maxLength, T[] items, int firstIndex) {

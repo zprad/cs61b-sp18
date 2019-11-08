@@ -36,6 +36,34 @@ public class ArrayDequeTest {
         }
     }
 
+    @Test
+    public void resizeThresholdTester() {
+        ArrayDeque<Integer> exam1 = new ArrayDeque();
+        for (int i = 0; i < 50; i++) {
+            exam1.addLast(i);
+            Assert.assertEquals(i + 1, exam1.size());
+            Assert.assertEquals(Integer.valueOf(i), exam1.get(i));
+        }
+        Integer first = exam1.removeFirst();
+        Assert.assertEquals(Integer.valueOf(0), first);
+        for (int i = 49; i > 0; i--) {
+            Integer last = exam1.removeLast();
+            Assert.assertEquals(Integer.valueOf(i), last);
+        }
+
+    }
+
+//    @Test
+//    public void arraycopyExperiment() {
+//        int[] a = new int[16];
+//        for (int i = 0; i < 16; i++) {
+//            a[i] = i;
+//        }
+//        int[] b = new int[16];
+//        System.arraycopy(a, 5, b, 0, 16);
+//        b[0] = 0;
+//    }
+
 //    @Test
 //    public void testResizing() {
 //        ArrayDeque<String> exam1 = new ArrayDeque();
