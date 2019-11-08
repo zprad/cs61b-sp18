@@ -26,6 +26,16 @@ public class ArrayDequeTest {
         Assert.assertEquals(Integer.valueOf(0), exam1.get(0));
     }
 
+    @Test
+    public void testAddLastMore() {
+        ArrayDeque<Integer> exam1 = new ArrayDeque();
+        for (int i = 0; i < 8; i++) {
+            exam1.addLast(i);
+            Assert.assertEquals(i + 1, exam1.size());
+            Assert.assertEquals(Integer.valueOf(i), exam1.get(i));
+        }
+    }
+
 //    @Test
 //    public void testResizing() {
 //        ArrayDeque<String> exam1 = new ArrayDeque();

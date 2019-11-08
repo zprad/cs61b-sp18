@@ -150,6 +150,6 @@ public class ArrayDeque<T> {
             return null;
         }
         int realIndex = plus(firstIndex, i);
-        return items[i + realIndex];
+        return items[realIndex];
     }
 }
