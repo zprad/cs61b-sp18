@@ -96,7 +96,7 @@ public class LinkedListDequeTest {
         printTestStatus(passed);
     }
 
-    public static void insertTest() {
+    /*public static void insertTest() {
         System.out.println("Running insert test.");
 
         LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
@@ -105,9 +105,9 @@ public class LinkedListDequeTest {
         lld1.addLast(2);
         lld1.insert(10, 1);
         checkInsert(10, lld1.get(1));
-    }
+    }*/
 
-    public static void reverseTest() {
+    /*public static void reverseTest() {
         System.out.println("Running reverse test.");
 
         LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
@@ -117,13 +117,13 @@ public class LinkedListDequeTest {
         lld1.insert(10, 1);
         lld1.reverseRecursive();
         checkInsert(6, lld1.get(1));
-    }
+    }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         System.out.println("Running tests.\n");
         addIsEmptySizeTest();
         addRemoveTest();
         insertTest();
         reverseTest();
-    }
+    }*/
 }

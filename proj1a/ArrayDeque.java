@@ -77,6 +77,7 @@ public class ArrayDeque<T> {
         }
         int index = plus(firstIndex, size);
         items[index] = x;
+        size += 1;
     }
 
     public int size() {
