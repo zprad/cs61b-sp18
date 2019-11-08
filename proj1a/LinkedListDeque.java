@@ -30,22 +30,22 @@ public class LinkedListDeque<T> {
         sentNode.next = node;
     }*/
 
-    public void insert(T x, int position) {
-        size += 1;
-        int i = 0;
-        if (position > size) {
-            position = size;
-        }
-        IntNode p = sentNode;
-        while (i != position) {
-            i += 1;
-            p = p.next;
-        }
-        IntNode node = new IntNode(x, p, p.next);
-        p.next.prev = node;
-        p.next = node;
-
-    }
+//    public void insert(T x, int position) {
+//        size += 1;
+//        int i = 0;
+//        if (position > size) {
+//            position = size;
+//        }
+//        IntNode p = sentNode;
+//        while (i != position) {
+//            i += 1;
+//            p = p.next;
+//        }
+//        IntNode node = new IntNode(x, p, p.next);
+//        p.next.prev = node;
+//        p.next = node;
+//
+//    }
 
     public void addFirst(T x) {
         IntNode node = new IntNode(x, sentNode, sentNode.next);
@@ -128,7 +128,7 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(index, sentNode.next);
     }
 
-    public void reverse() {
+    /*public void reverse() {
         IntNode p = sentNode;
         IntNode moveNode = sentNode.prev;
         while (moveNode.item != null) {
@@ -157,7 +157,7 @@ public class LinkedListDeque<T> {
 
     public void reverseRecursive() {
         reverseHelper(sentNode, sentNode.prev);
-    }
+    }*/
 
 
 }

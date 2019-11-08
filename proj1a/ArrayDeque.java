@@ -97,7 +97,7 @@ public class ArrayDeque<T> {
         System.out.println();
     }
 
-    public T getLast() {
+    private T getLast() {
         if (isEmpty()) {
             return null;
         }
@@ -105,7 +105,7 @@ public class ArrayDeque<T> {
         return items[lastIndex];
     }
 
-    public void checkUseRatio() {
+    private void checkUseRatio() {
         Double useRatio = (double) size() / items.length;
         if (useRatio < ratio) {
             int l = (int) Math.ceil(items.length * ratio);
