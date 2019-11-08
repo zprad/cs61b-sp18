@@ -12,10 +12,10 @@ public class ArrayDequeTest {
 
     @Test
     public void testAddFirst() {
-        ArrayDeque<String> exam1 = new ArrayDeque();
-        exam1.addFirst("first");
+        ArrayDeque<Integer> exam1 = new ArrayDeque();
+        exam1.addFirst(0);
         Assert.assertEquals(1, exam1.size());
-        Assert.assertEquals("first", exam1.get(0));
+        Assert.assertEquals(Integer.valueOf(0), exam1.get(0));
     }
 
 //    @Test

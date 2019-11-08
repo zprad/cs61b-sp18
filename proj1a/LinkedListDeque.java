@@ -1,14 +1,14 @@
-public class LinkedListDeque<Horse> {
+public class LinkedListDeque<T> {
 
     private IntNode sentNode;
     private int size;
 
     private class IntNode {
         private IntNode prev;
-        private Horse item;
+        private T item;
         private IntNode next;
 
-        public IntNode(Horse i, IntNode p, IntNode n) {
+        public IntNode(T i, IntNode p, IntNode n) {
             prev = p;
             item = i;
             next = n;
@@ -22,15 +22,15 @@ public class LinkedListDeque<Horse> {
         sentNode.next = sentNode;
     }
 
-    public LinkedListDeque(Horse x) {
+    /*public LinkedListDeque(T x) {
         size = 1;
         sentNode = new IntNode(null, null, null);
         IntNode node = new IntNode(x, sentNode, sentNode);
         sentNode.prev = node;
         sentNode.next = node;
-    }
+    }*/
 
-    public void insert(Horse x, int position) {
+    public void insert(T x, int position) {
         size += 1;
         int i = 0;
         if (position > size) {
@@ -47,14 +47,14 @@ public class LinkedListDeque<Horse> {
 
     }
 
-    public void addFirst(Horse x) {
+    public void addFirst(T x) {
         IntNode node = new IntNode(x, sentNode, sentNode.next);
         sentNode.next = node;
         node.next.prev = node;
         size += 1;
     }
 
-    public void addLast(Horse x) {
+    public void addLast(T x) {
         IntNode node = new IntNode(x, sentNode.prev, sentNode);
         sentNode.prev = node;
         node.prev.next = node;
@@ -79,7 +79,7 @@ public class LinkedListDeque<Horse> {
         System.out.println();
     }
 
-    public Horse removeFirst() {
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         }
@@ -90,7 +90,7 @@ public class LinkedListDeque<Horse> {
         return first.item;
     }
 
-    public Horse removeLast() {
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         }
@@ -101,7 +101,7 @@ public class LinkedListDeque<Horse> {
         return last.item;
     }
 
-    public Horse get(int i) {
+    public T get(int i) {
         if (i >= size) {
             return null;
         }
@@ -114,14 +114,14 @@ public class LinkedListDeque<Horse> {
         return p.item;
     }
 
-    private Horse getRecursiveHelper(int index, IntNode node) {
+    private T getRecursiveHelper(int index, IntNode node) {
         if (index == 0) {
             return node.item;
         }
         return getRecursiveHelper(index - 1, node.next);
     }
 
-    public Horse getRecursive(int index) {
+    public T getRecursive(int index) {
         if (index >= size) {
             return null;
         }

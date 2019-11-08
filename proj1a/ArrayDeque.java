@@ -1,6 +1,6 @@
-public class ArrayDeque<Horse> {
+public class ArrayDeque<T> {
 
-    private Horse[] items;
+    private T[] items;
 //    private int size;
     private int firstIndex;
     private int size;
@@ -10,24 +10,24 @@ public class ArrayDeque<Horse> {
 //  empty deque constructor.
     public ArrayDeque() {
 
-        items = (Horse []) new Object[8];
+        items = (T []) new Object[8];
 
         firstIndex = 0;
         size = 0;
     }
 
     // ArrayDeque constructor with x.
-    public ArrayDeque(Horse x) {
+    /*public ArrayDeque(T x) {
 //        size = 1;
 
-        items = (Horse []) new Object[8];
+        items = (T []) new Object[8];
         items[0] = x;
         firstIndex = 0;
         size = 1;
-    }
+    }*/
 
     private void resizing(int maxLength) {
-        Horse[] newItems = (Horse []) new Object[maxLength];
+        T[] newItems = (T []) new Object[maxLength];
         int firstPartLength = items.length - firstIndex;
         int restPartLength = firstIndex;
         System.arraycopy(items, firstIndex, newItems, 0, firstPartLength);
@@ -35,15 +35,15 @@ public class ArrayDeque<Horse> {
         items = newItems;
     }
 
-    public Horse[] resizing(int maxLength, Horse[] items, int firstIndex) {
-        Horse[] newItems = (Horse []) new Object[maxLength];
-        int firstPartLength = items.length - firstIndex;
-        int restPartLength = firstIndex;
-        System.arraycopy(items, firstIndex, newItems, 0, firstPartLength);
-        System.arraycopy(items, 0, newItems, firstPartLength, restPartLength);
-
-        return newItems;
-    }
+//    public T[] resizing(int maxLength, T[] items, int firstIndex) {
+//        T[] newItems = (T []) new Object[maxLength];
+//        int firstPartLength = items.length - firstIndex;
+//        int restPartLength = firstIndex;
+//        System.arraycopy(items, firstIndex, newItems, 0, firstPartLength);
+//        System.arraycopy(items, 0, newItems, firstPartLength, restPartLength);
+//
+//        return newItems;
+//    }
 
     private int plus(int index, int count) {
         int n = index + count;
@@ -61,8 +61,8 @@ public class ArrayDeque<Horse> {
         return n;
     }
 
-    // Adds an item of type Horse to the front of the deque.
-    public void addFirst(Horse x) {
+    // Adds an item of type T to the front of the deque.
+    public void addFirst(T x) {
         if (size == items.length) {
             resizing(size * FACTOR);
         }
@@ -71,7 +71,7 @@ public class ArrayDeque<Horse> {
         size += 1;
     }
 
-    public void addLast(Horse x) {
+    public void addLast(T x) {
         if (size() == items.length) {
             resizing(size() * FACTOR);
         }
@@ -97,7 +97,7 @@ public class ArrayDeque<Horse> {
         System.out.println();
     }
 
-    public Horse getLast() {
+    public T getLast() {
         if (isEmpty()) {
             return null;
         }
@@ -108,19 +108,19 @@ public class ArrayDeque<Horse> {
     public void checkUseRatio() {
         Double useRatio = (double) size() / items.length;
         if (useRatio < ratio) {
-            int l = (int)Math.ceil(items.length * ratio);
+            int l = (int) Math.ceil(items.length * ratio);
             resizing(l);
         }
     }
 
-    public Horse removeFirst() {
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         }
         if (items.length >= 16) {
             checkUseRatio();
         }
-        Horse n = items[firstIndex];
+        T n = items[firstIndex];
 
         items[firstIndex] = null;
         firstIndex = plus(firstIndex, 1);
@@ -129,7 +129,7 @@ public class ArrayDeque<Horse> {
         return n;
     }
 
-    public Horse removeLast() {
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         }
@@ -138,13 +138,13 @@ public class ArrayDeque<Horse> {
         }
 
         int lastIndex = plus(firstIndex, size - 1);
-        Horse n = items[lastIndex];
+        T n = items[lastIndex];
         items[lastIndex] = null;
         size -= 1;
         return n;
     }
 
-    public Horse get(int i) {
+    public T get(int i) {
         if (i >= size) {
             return null;
         }
