@@ -8,23 +8,23 @@ A:
 
 Q: What's something you felt proud of in your code, if anything?
 
-A:
+A: use variable firstIndex to record the first position of deque, then array is cycle
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
-A:
+A: in resizing method, use if else to distinguish that array is expand or reduce
 
 Q: What did you learn by talking to your partner about writing ArrayDeque?
 
-A:
+A: write test case should think about random and many times operation
 
 Q: What do you wish you would have known before writing ArrayDeque, if anything?
 
-A:
+A: 
 
 Q: If you wrote ArrayDeque again, what would you do differently, if anything?
 
-A:
+A: write basic test cases firstly
 
 -----
 
