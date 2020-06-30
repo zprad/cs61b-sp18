@@ -27,3 +27,7 @@ My code for CS 61B Data Structures, Spring 2018
 #### HW1
 1. 完成到Just For Fun: TTFAF
 2. even more fun, task 5 还没完成
+
+
+### week 9
+1. 完成了lab9
